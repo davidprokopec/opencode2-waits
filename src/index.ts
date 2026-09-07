@@ -60,10 +60,7 @@ export default Plugin.define({
         })
         yield* ctx.command.transform((commands) => {
           for (const definition of Commands.definitions) {
-            commands.update(definition.name, (command) => {
-              command.description = definition.description
-              command.template = definition.template
-            })
+            commands.add(Commands.command(definition, ctx.session))
           }
         })
       }
